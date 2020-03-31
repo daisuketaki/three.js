@@ -37,8 +37,8 @@ function init() {
   //球体作成
   const geometry = new THREE.SphereGeometry(300,30,30);
   //画像読み込み
-   const mesh = new THREE.Mesh(geometry,material);
-  scene.add(mesh);
+  const earth = new THREE.Mesh(geometry,material);
+  scene.add(earth);
 
   //平行光源
   const light = new THREE.DirectionalLight(0xFFFFFF);
@@ -82,6 +82,7 @@ function init() {
 
   	//箱を回転させる
   	container.rotation.y += 0.01;
+    earth.rotation.y += 0.01;    
 
   	renderer.render(scene,camera);
   }
