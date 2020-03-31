@@ -4,7 +4,7 @@ function init() {
   // ここに処理を追加していきます
   const width = 960;
   const height = 540;
-  let lot = 0;
+  let rot = 0;
 
   //レンダラー作成
   const renderer = new THREE.WebGLRenderer({
