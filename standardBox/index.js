@@ -19,11 +19,17 @@ function init() {
   const camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
   camera.position.set(0,0, +1000);
 
-  //箱を作成
-  const geometry = new THREE.BoxGeometry(500,500,500);
-  const material = new THREE.MeshNormalMaterial();
-  const box = new THREE.Mesh(geometry,material);
-  scene.add(box);
+  //球体作成
+  const geometry = new THREE.SphereGeometry(300,30,30);
+  //画像読み込み
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load('earthmap1k.jpg');
+  //マテリアルにテクスチャを設定
+  const material = new THREE.MeshStandardMaterial({
+    map:texture
+  });
+  const mesh = new THREE.Mesh(geometry,material);
+  scene.add(mesh);
 
   //平行光源
   const light = new THREE.DirectionalLight(0xFFFFFF);
@@ -39,8 +45,8 @@ function init() {
   	requestAnimationFrame(tick);
 
   	//箱を回転させる
-  	box.rotation.x += 0.01;
-  	box.rotation.y += 0.01;
+  	mesh.rotation.x += 0.01;
+  	mesh.rotation.y += 0.01;
 
   	renderer.render(scene,camera);
   }
