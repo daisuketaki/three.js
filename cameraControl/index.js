@@ -4,7 +4,6 @@ function init() {
   // ここに処理を追加していきます
   const width = 960;
   const height = 540;
-  let lot = 0;
 
   //レンダラー作成
   const renderer = new THREE.WebGLRenderer({
@@ -40,32 +39,6 @@ function init() {
   //画像読み込み
   const earth = new THREE.Mesh(geometry,material);
   scene.add(earth);
-
-  //星屑作成
-  crateStarField();
-
-  function createStarField(){
-    //形状データを作成
-    const geometry = new THREE.Geometry();
-    for(let i=0; i<1000; i){
-      geometry.vertices.push(
-          new THREE.Vector3(
-              3000 * (Math.random() - 0.5),
-              3000 * (Math.random() - 0.5),
-              3000 * (Math.random() - 0.5),
-            )
-        );
-    }
-    //マテリアル作成
-    const material = new THREE.PointsMaterial({
-      size:5,
-      color : 0xffffff
-    });
-    //物体を作成
-    const mesh = new THREE.Points(geometry,material);
-    scene.add(mesh);
-
-  }
 
   //平行光源
   const light = new THREE.DirectionalLight(0xFFFFFF);
@@ -105,23 +78,12 @@ function init() {
   tick();
 
   function tick(){
+  	requestAnimationFrame(tick);
 
   	//箱を回転させる
   	container.rotation.y += 0.01;
     earth.rotation.y += 0.01;    
 
-    //カメラを回転させる
-    rot += 0.5;
-    const radian = (rot * Math.PI) / 180; //ラジアンに変換
-    //角度に応じてカメラの位置を設定
-    camera.position.x = 1000 * Math.sin(radian);
-    camera.position.z = 1000 * Math.cos(radian);   
-    //原点を見つめる
-    camera.lookAt(new THREE.Vector3(0,0,0)); 
-
-
   	renderer.render(scene,camera);
-    requestAnimationFrame(tick);
-    
   }
 }
