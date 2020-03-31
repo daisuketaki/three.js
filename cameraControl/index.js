@@ -42,7 +42,7 @@ function init() {
   scene.add(earth);
 
   //星屑作成
-  crateStarField();
+  createStarField();
 
   function createStarField(){
     //形状データを作成
