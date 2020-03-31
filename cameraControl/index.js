@@ -47,7 +47,7 @@ function init() {
   function createStarField(){
     //形状データを作成
     const geometry = new THREE.Geometry();
-    for(let i=0; i<1000; i){
+    for(let i=0; i<1000; i++){
       geometry.vertices.push(
           new THREE.Vector3(
               3000 * (Math.random() - 0.5),
